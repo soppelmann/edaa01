@@ -33,15 +33,15 @@ public class Holgersson {
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
 
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).process(word);
+			for (TextProcessor textProcessor : list) {
+				textProcessor.process(word);
 			}
 		}
 
 		s.close();
 
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).report();
+		for (TextProcessor textProcessor : list) {
+			textProcessor.report();
 		}
 	}
 }

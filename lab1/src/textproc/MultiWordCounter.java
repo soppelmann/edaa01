@@ -8,8 +8,8 @@ public class MultiWordCounter implements TextProcessor {
 
 
     public MultiWordCounter(String[] words) {
-        for (int i = 0; i < words.length; i++) {
-            this.words.put(words[i], 0);
+        for (String word : words) {
+            this.words.put(word, 0);
         }
     }
 
