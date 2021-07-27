@@ -2,9 +2,10 @@ package textproc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MultiWordCounter implements TextProcessor {
-    private Map<String, Integer> words = new HashMap<String, Integer>();
+    Map<String, Integer> words = new TreeMap<>();
 
 
     public MultiWordCounter(String[] words) {
@@ -22,6 +23,7 @@ public class MultiWordCounter implements TextProcessor {
 
     @Override
     public void report() {
+        System.out.println("Report for MultiWordCounter");
         for (String key : words.keySet()) { //från labhandledning
             System.out.println(key + ": " + words.get(key));
         }

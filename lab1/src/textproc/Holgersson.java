@@ -30,9 +30,9 @@ public class Holgersson {
 		TextProcessor p = new SingleWordCounter("nils"); //initialisera första ordet
 		TextProcessor p1 = new SingleWordCounter("norge"); //initialisera andra ordet
 		TextProcessor l = new MultiWordCounter(LANDSKAP);
-		//list.add(p);
-		//list.add(p1);
-		//list.add(l);
+		list.add(p);
+		list.add(p1);
+		list.add(l);
 		list.add(full);
 
 		Scanner s = new Scanner(new File("lab1/nilsholg.txt"));
