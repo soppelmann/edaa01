@@ -10,6 +10,10 @@ public class GeneralWordCounter implements TextProcessor {
         this.exceptions = stopwords;
     }
 
+    public List<Map.Entry<String, Integer>> getWordList() { //labb 3
+        return new ArrayList<>(this.words.entrySet());
+    }
+
     @Override
     public void process(String w) {
         if (!exceptions.contains(w) && words.get(w) == null) {

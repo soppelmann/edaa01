@@ -102,7 +102,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 
 		size += q.size;
 
-		q.last = null;
+		q.last = null; //Garbage collector might handle this, destroy()
 		q.size = 0;
 	}
 	
