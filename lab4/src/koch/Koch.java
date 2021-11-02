@@ -19,7 +19,7 @@ public class Koch extends Fractal {
 	 */
     @Override
 	public String getTitle() {
-		return "Kochs triangel";
+		return "Kochs triangle";
 	}
 
 	/** Draws the fractal.  

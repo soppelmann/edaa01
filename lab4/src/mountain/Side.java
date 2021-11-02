@@ -1,26 +1,30 @@
 package mountain;
 
+import java.util.Objects;
+
 public class Side {
     private Point a;
     private Point b;
 
-    public Side(Point a, Point b) {
-        this.a = a;
-        this.b = b;
-    }
 
     @Override
-    public boolean equals(Object a) {
-        Side p = (Side) a;
-
-        // Check if two points are the same
-        return this.a.equals(p.a) && this.b.equals(p.b) || this.a.equals(p.b) && this.b.equals(p.a);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Side)) return false;
+        Side side = (Side) o;
+        return this.a.equals(side.b);
     }
 
     @Override
     public int hashCode() {
         return a.hashCode() + b.hashCode();
     }
+
+    public Side(Point a, Point b) {
+        this.a = a;
+        this.b = b;
+    }
+
 
 
 }
