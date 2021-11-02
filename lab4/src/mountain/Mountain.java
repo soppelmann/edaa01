@@ -3,6 +3,8 @@ package mountain;
 import fractal.Fractal;
 import fractal.TurtleGraphics;
 
+import java.util.HashMap;
+
 public class Mountain extends Fractal {
 
     private Point a;
@@ -11,12 +13,15 @@ public class Mountain extends Fractal {
 
     private double dev;
 
+    private HashMap<Side, Point> sides;
+
 
     public Mountain(Point a, Point b, Point c, double dev) {
         this.a = a;
         this.b = b;
         this.c = c;
         this.dev = dev;
+        this.sides = new HashMap<>();
     }
 
     private void fractalTriangle(TurtleGraphics turtle, int order, Point a, Point b, Point c, double dev)
@@ -45,7 +50,25 @@ public class Mountain extends Fractal {
     }
 
     public Point midpoint(Point a, Point b, double dev) {
-        return new Point(a.getX() + (b.getX() - a.getX()) / 2, (int) ((a.getY() + (b.getY() - a.getY()) / 2) + RandomUtilities.randFunc(dev)));
+
+        // Create side
+        Side s = new Side(a,b);
+
+        // Check map if point already exists
+        if(sides.containsKey(s)) {
+            Point p = sides.get(s);
+            sides.remove(s);
+            return p;
+        }
+
+        int x = a.getX() + (b.getX() - a.getX()) / 2;
+        int y = (int) ((a.getY() + (b.getY() - a.getY()) / 2) + RandomUtilities.randFunc(dev));
+        Point p = new Point(x, y);
+
+        //add to map
+        this.sides.put(s, p);
+
+        return p;
     }
 
     @Override
