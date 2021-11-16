@@ -9,10 +9,14 @@ public class Side {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Side)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Side)) {
+            return false;
+        }
         Side side = (Side) o;
-        return this.a.equals(side.b);
+        return this.a.equals(side.b) || this.b.equals(side.a);
     }
 
     @Override

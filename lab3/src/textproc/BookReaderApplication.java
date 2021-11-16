@@ -26,7 +26,7 @@ public class BookReaderApplication {
 
         s1.close();
 
-        Scanner s2 = new Scanner(new File("lab3/nilsholg.txt")); //använd jfx file chooser
+        Scanner s2 = new Scanner(new File("lab3/nilsholg.txt"));
         s2.findWithinHorizon("\uFEFF", 1);
         s2.useDelimiter(delimiter);
 
@@ -37,8 +37,9 @@ public class BookReaderApplication {
             counter.process(word);
         }
 
-        BookReaderController controller = new BookReaderController(counter);
+        new BookReaderController(counter);
 
     }
+
 
 }

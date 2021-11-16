@@ -5,8 +5,8 @@ import java.util.Comparator;
 
 
 public class BinarySearchTree<E extends Comparable<E>> {
-  BinaryNode<E> root;  // Används också i BSTVisaulizer
-  int size;            // Används också i BSTVisaulizer
+  BinaryNode<E> root;  // Används också i BSTVisualizer
+  int size;            // Används också i BSTVisualizer
   private Comparator<E> comparator;
 
 
@@ -15,15 +15,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
   		BSTVisualizer visualizer = new BSTVisualizer("Tree", 500, 500);
   		BinarySearchTree<Integer> tree = new BinarySearchTree<>();
 
-  		tree.add(1);
-  		tree.add(2);
-  		tree.add(6);
-  		tree.add(4);
-		tree.add(-4);
-		tree.add(25);
+  		for (int i = 0; i < 14; i++) {
+  			if (i % 2 != 0) {
+  				tree.add(i);
+			}
+		}
 
-//  		tree.rebuild();
-//  		tree.printTree();
+  		tree.rebuild();
+  		tree.printTree();
 
   		visualizer.drawTree(tree);
 	}
@@ -47,7 +46,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * Constructs an empty binary search tree, sorted according to the specified comparator.
 	 */
 	public BinarySearchTree(Comparator<E> comparator) {
-		
+		this.comparator = new Comparable();
 	}
 
 	/**
@@ -64,9 +63,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return this.add(this.root, x); //call private add function
 	}
 
-	private boolean add(BinaryNode<E> p, E x) {
+	private boolean add(BinaryNode<E> p, E x) { //p is a binary node
 		BinaryNode<E> node = new BinaryNode<>(x);
-		if (comparator.compare(x, p.element) == 0) return false;
+		if (comparator.compare(x, p.element) == 0) return false; //if duplicate
 		// Right
 		if (comparator.compare(x, p.element) > 0 ) {
 			if (p.right == null ) {
@@ -116,7 +115,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * Removes all of the elements from this list.
+	 * Removes all the elements from this list.
 	 */
 	public void clear() {
 		this.root = null;
@@ -127,36 +126,63 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * Print tree contents in order.
 	 */
 	public void printTree() {
-		//this.printTree(this.root);
+		this.printTree(this.root);
+	}
+
+	private void printTree(BinaryNode<E> node) {
+		if (node != null) {
+			this.printTree(node.left);
+			System.out.println(" " + node.element); //print current node
+			this.printTree(node.right);
+		}
 	}
 
 	/** 
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
+		ArrayList<E> sorted = new ArrayList();
+
+		toArray(this.root, sorted);
+
+		this.root = this.buildTree(sorted, 0, sorted.size() - 1);
+	}
+	
+	/**
+	 * Adds all elements from the tree rooted at n in order to the list sorted.
+	 */
+	private void toArray(BinaryNode<E> node, ArrayList<E> sorted) {
+
+		if (node != null) { //same thinking as printtree
+			this.toArray(node.left, sorted);
+			sorted.add(node.element);
+			this.toArray(node.right, sorted);
+		}
 
 	}
 	
-	/*
-	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
-	 */
-	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) {
-	
-	}
-	
-	/*
+	/**
 	 * Builds a complete tree from the elements from position first to 
 	 * last in the list sorted.
 	 * Elements in the list a are assumed to be in ascending order.
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
-		return null;
+		if (first > last) return null; //assume ascending order, we could also sort it
+
+		int center = (last + first) / 2; //get the middle element
+
+		BinaryNode<E> node = new BinaryNode<>(sorted.get(center));
+		//now we got our root, build from this.
+
+		node.left = this.buildTree(sorted, first, center-1); //recursion, build tree from each node
+
+		node.right = this.buildTree(sorted, center+1, last); //recursion
+
+		return node;
 	}
-	
 
-
-	static class BinaryNode<E> {
+	static class BinaryNode<E> { //som i linked list
 		E element;
 		BinaryNode<E> left;
 		BinaryNode<E> right;

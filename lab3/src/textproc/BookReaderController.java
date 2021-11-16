@@ -15,8 +15,8 @@ public class BookReaderController {
         JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = frame.getContentPane();
-        //(listvy, knappar etc.) ska läggas till.
 
+        //(listvy, knappar etc.)
         //Lägg till listan
         var model = new SortedListModel<>(counter.getWordList());
         var list = new JList<>(model);
@@ -44,10 +44,10 @@ public class BookReaderController {
 
         pane.add(controlsPanel, BorderLayout.SOUTH); //adds controls to bottom of pane
 
-        // Bind actions to controls
+        // addaction till knappar m.h.a anonyma klasser, returns ointressanta då vi bara vill sortera osv.
 
-        alphBtn.addActionListener((e) -> model.sort((m1, m2) -> m1.getKey().compareTo(m2.getKey())));
-        freqBtn.addActionListener((e) -> model.sort((m1, m2) -> m2.getValue() - m1.getValue()));
+        alphBtn.addActionListener((e) -> model.sort((m1, m2) -> m1.getKey().compareTo(m2.getKey()))); //alfanumerisk
+        freqBtn.addActionListener((e) -> model.sort((m1, m2) -> m2.getValue() - m1.getValue())); //frekvens
         searchTxt.addActionListener(e -> searchBtn.doClick()); //valfri
 
         searchBtn.addActionListener((e) -> {

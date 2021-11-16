@@ -19,7 +19,6 @@ public class SortedListModel<E> extends AbstractListModel<E> {
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
 		return list.size();
 	}
 

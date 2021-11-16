@@ -1,6 +1,6 @@
 package mountain;
 
-public class Point {
+public class Point { // prewritten class
 	private int x, y;
 
 	/** Constructs and initializes a point at the specified (x,y) location. */
