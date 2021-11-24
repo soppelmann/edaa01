@@ -66,6 +66,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	private boolean add(BinaryNode<E> p, E x) { //p is a binary node
 		BinaryNode<E> node = new BinaryNode<>(x);
 		if (comparator.compare(x, p.element) == 0) return false; //if duplicate
+
 		// Right
 		if (comparator.compare(x, p.element) > 0 ) {
 			if (p.right == null ) {
