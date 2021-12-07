@@ -36,6 +36,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	}
 
 	class Comparable implements Comparator<E> {
+
 		@Override
 		public int compare(E e1, E e2) {
 			return e1.compareTo(e2);
@@ -153,13 +154,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * Adds all elements from the tree rooted at n in order to the list sorted.
 	 */
 	private void toArray(BinaryNode<E> node, ArrayList<E> sorted) {
-
 		if (node != null) { //same thinking as printtree
 			this.toArray(node.left, sorted);
 			sorted.add(node.element);
 			this.toArray(node.right, sorted);
 		}
-
 	}
 	
 	/**
