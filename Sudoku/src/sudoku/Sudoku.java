@@ -13,20 +13,16 @@ public class Sudoku implements SudokuSolver {
         this.board = new int[9][9];
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public boolean solve() {
         return solve(0, 0);
     }
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Private helper method from solve, uses recursive backtracking.
+     * @param row The row that is being evaluated
+     * @param col The column that is being evaluated
+     * @return true/false if sudoku was solvable
      */
     private boolean solve(int row, int col) {
         attempts++;
@@ -38,7 +34,7 @@ public class Sudoku implements SudokuSolver {
             col = 0;
         }
 
-        if (attempts > 1000000) { //max attempts, should be able to get a prettier solution
+        if (attempts > 1000000) { //max attempts, should be able to get a prettier solution for unsolvable
             return false;
         }
 
@@ -76,8 +72,8 @@ public class Sudoku implements SudokuSolver {
 
     /**
      *
-     * @param row
-     * @param col
+     * @param row The row of cell whose value will be removed
+     * @param col The column of cell whose value will be removed
      */
     @Override
     public void remove(int row, int col) {
@@ -86,8 +82,8 @@ public class Sudoku implements SudokuSolver {
 
     /**
      *
-     * @param row
-     * @param col
+     * @param row The row of cell whose value will be fetched
+     * @param col The column of cell whose value will be fetched
      * @return
      */
     @Override
@@ -96,8 +92,8 @@ public class Sudoku implements SudokuSolver {
     }
 
     /**
-     *
-     * @return
+     * Checks if grid adheres to sudoku rules
+     * @return true/false if adhering to rules
      */
     @Override
     public boolean isValid() { //check sudoku rules
@@ -136,7 +132,7 @@ public class Sudoku implements SudokuSolver {
     }
 
     /**
-     *
+     * Clears the board of values, i.e sets them all to 0
      */
     @Override
     public void clear() {
@@ -153,8 +149,8 @@ public class Sudoku implements SudokuSolver {
     }
 
     /**
-     *
-     * @return
+     * Returns cell values from grid. The digit 0 represents an empty box.
+     * @return the cell values in the matrix
      */
     @Override
     public int[][] getMatrix() {

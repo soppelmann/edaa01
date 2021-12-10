@@ -4,7 +4,8 @@ public interface SudokuSolver {
 
 
     /**
-     * To be done
+     * Attempts to solve the grid by defined rules by backtracking.
+     * @return true/false if grid was solvable
      */
     boolean solve();
 
@@ -21,16 +22,20 @@ public interface SudokuSolver {
 
     /**
      *
-     * @param row
-     * @param col
+     * @param row The row of the value
+     * @param col The column of the value
+     * @throws IllegalArgumentException if row or col is outside the range
+     *                                  [0..9]
      */
     void remove(int row, int col);
 
     /**
      *
-     * @param row
-     * @param col
-     * @return
+     * @param row The row of the value
+     * @param col The column of the value
+     * @throws IllegalArgumentException if row or col is outside the range
+     *                                  [0..9]
+     * @return value of the cell
      */
     int get(int row, int col);
 
@@ -40,7 +45,7 @@ public interface SudokuSolver {
     boolean isValid();
 
     /**
-     * To be done
+     * Clears all boxes by setting them to "0"
      */
     void clear();
 
@@ -54,7 +59,8 @@ public interface SudokuSolver {
     void setMatrix(int[][] m);
 
     /**
-     * To be done
+     * Returns cell values from grid. The digit 0 represents an empty box.
+     * @return the cell values in the matrix
      */
     int[][] getMatrix();
 }

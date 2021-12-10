@@ -11,7 +11,7 @@ public class SudokuView {
     private JTextField[][] matrix;
 
     /**
-     *
+     *  Default constructor, initialize attributes
      * @param board
      */
     public SudokuView(SudokuSolver board) {
@@ -24,7 +24,7 @@ public class SudokuView {
     //Private help functions below
 
     /**
-     *
+     *  Constructor that creates the GUI for the sudoku solver
      */
     private void createWindow() {
         JFrame frame = new JFrame("Sudoku");
@@ -36,7 +36,7 @@ public class SudokuView {
 
         //SudokuGrid Jpanel object //this.game = the one we can control //fields = textfields in SudokuGrid
         this.SudokuGrid = new JPanel();
-        SudokuGrid.setLayout(new GridLayout(9, 9));
+        SudokuGrid.setLayout(new GridLayout(9, 9, -2, -2)); //rows,cols,hgap,vgap
         SudokuGrid.setPreferredSize(new Dimension(600, 600));
 
 
@@ -62,8 +62,8 @@ public class SudokuView {
 
     /**
      *
-     * @param freshBuild
-     * @param clear
+     * @param freshBuild    Defines if first build
+     * @param clear         Clears the board of inputs
      */
     private void drawSudoku(boolean freshBuild, boolean clear) {
 
@@ -103,14 +103,15 @@ public class SudokuView {
     }
 
     /**
-     *
+     *  Clears the board of inputs in solver and in GUI
      */
     private void clearSudoku() {
         drawSudoku(false, true);
     }
 
     /**
-     *
+     *  Writes out solution matrix on board, if there is a solution,
+     *  else, pops up an error dialog window
      */
     private void solveSudoku() { //need to check for no alphebetical characters, replace those with "" maybe and try catch..
         boolean failed = false;
