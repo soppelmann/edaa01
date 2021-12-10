@@ -3,7 +3,6 @@ package Sudoku;
 public interface SudokuSolver {
 
 
-
     /**
      * To be done
      */
@@ -21,12 +20,17 @@ public interface SudokuSolver {
     void add(int row, int col, int digit);
 
     /**
-     * To be done
+     *
+     * @param row
+     * @param col
      */
     void remove(int row, int col);
 
     /**
-     * To be done
+     *
+     * @param row
+     * @param col
+     * @return
      */
     int get(int row, int col);
 
