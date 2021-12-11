@@ -15,6 +15,7 @@ public class Sudoku implements SudokuSolver {
 
     @Override
     public boolean solve() {
+        attempts = 0;
         return solve(0, 0);
     }
 
@@ -29,17 +30,17 @@ public class Sudoku implements SudokuSolver {
         if (col == 9) {
             row++;
             if (row == 9 && isValid()) {
-                return true; //gått igenom hela matrisen
+                return true; //walked through entire matrix
             }
             col = 0;
         }
 
-        if (attempts > 1000000) { //max attempts, should be able to get a prettier solution for unsolvable
+        if (attempts > 1000000) { //max attempts, should be able to get a prettier solution for unsolvable boards
             return false;
         }
 
-        //om vi är på kolumn 9 går vi nästa rad
-        //kolla punkter, kolla ifylld, sen sätt i 1-9
+        // if at col 9 go to next row
+        // check points, check fill, add [1-9]
         if (get(row, col) != 0) {
             if (isValid()) {
                 return solve(row, col + 1);
@@ -54,7 +55,7 @@ public class Sudoku implements SudokuSolver {
                 }
             }
         }
-        remove(row, col); //tack vare rekursion, träd
+        remove(row, col); //due to recursion
         return false;
     }
 
@@ -104,7 +105,7 @@ public class Sudoku implements SudokuSolver {
         //Check rows
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) { //check rows
-                if (this.board[r][c] < 0 || this.board[r][c] > 9 || (this.board[r][c] != 0 && !Set1.add(this.board[r][c]))) { //added check for g.t 9
+                if (this.board[r][c] < 0 || this.board[r][c] > 9 || (this.board[r][c] != 0 && !Set1.add(this.board[r][c]))) { //check for 1-9
                     return false;
                 }
                 if (this.board[c][r] != 0 && !Set2.add(this.board[c][r])) {
