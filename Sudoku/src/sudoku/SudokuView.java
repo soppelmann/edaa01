@@ -27,35 +27,6 @@ public class SudokuView {
 
     //Private help functions below
 
-    private ImageIcon emojis(int i) { // get a smiley icon from the interwebz :)
-        ImageIcon smiley = new ImageIcon();
-        if (i == 1) {
-        try {
-            smiley = new ImageIcon(new URL("https://envs.sh/EtW.gif"));
-            return smiley;
-        }
-        catch (Exception e) {
-        }
-        } else if (i == 2) {
-            try {
-                smiley = new ImageIcon(new URL("https://envs.sh/EtB.gif"));
-                return smiley;
-            }
-            catch (Exception e) {
-            }
-        } else if (i == 3) {
-        }        try {
-            smiley = new ImageIcon(new URL("https://envs.sh/EtI.gif"));
-            return smiley;
-        }
-        catch (Exception e) {
-        }
-
-        return smiley;
-
-
-    }
-
     /**
      *  Constructor that creates the GUI for the sudoku solver
      */
@@ -64,12 +35,6 @@ public class SudokuView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = frame.getContentPane();
 
-        //build game here, call draw, add buttons, create textfields etc.
-        //pane.add(object)
-        //SudokuGrid Jpanel object //this.game = the one we can control //fields = textfields in SudokuGrid
-
-
-
         this.SudokuGrid = new JPanel();
         SudokuGrid.setLayout(new GridLayout(9, 9, -1, -1)); //rows,cols,hgap,vgap
         SudokuGrid.setPreferredSize(new Dimension(600, 600));
@@ -77,12 +42,13 @@ public class SudokuView {
         //menubar controls
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
-        // Has not been implemented
-        //JMenu File = new JMenu("File");
-        //JMenuItem open = new JMenuItem("Open");
-        //File.add(open);
-        //menubar.add(File);
-        //open.addActionListener((e) -> LoadFile());
+        /*  Has not yet been implemented
+        JMenu File = new JMenu("File");
+        JMenuItem open = new JMenuItem("Open");
+        File.add(open);
+        menubar.add(File);
+        open.addActionListener((e) -> LoadFile());
+         */
         JMenu Game = new JMenu("Game");
         JMenuItem gen = new JMenuItem("Generate");
         Game.add(gen);
@@ -113,7 +79,7 @@ public class SudokuView {
     }
 
     /**
-     * Helper method for generating a randomly filled Sudoku
+     * Helper method for generating a randomly filled Sudoku adhering to rules
      */
     private void GenGame() {
         clearSudoku();
@@ -123,7 +89,7 @@ public class SudokuView {
 
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
-                if (rn.nextInt(100) < 10 && (counter < 20)) {
+                if (rn.nextInt(100) < 15 && (counter < 20)) {
                     counter++;
                     this.game.add(r, c, (1 + rn.nextInt(8)));
                 }
@@ -241,6 +207,37 @@ public class SudokuView {
             }
 
         }
+    }
+
+    /**
+     *
+     * @param i which smiley to choose
+     * @return chosen smiley
+     */
+    private ImageIcon emojis(int i) { // get a smiley icon from the interwebz :)
+        ImageIcon smiley = new ImageIcon();
+        if (i == 1) {
+            try {
+                smiley = new ImageIcon(new URL("https://envs.sh/EtW.gif"));
+                return smiley;
+            }
+            catch (Exception e) {
+            }
+        } else if (i == 2) {
+            try {
+                smiley = new ImageIcon(new URL("https://envs.sh/EtB.gif"));
+                return smiley;
+            }
+            catch (Exception e) {
+            }
+        } else if (i == 3) {
+        }        try {
+            smiley = new ImageIcon(new URL("https://envs.sh/EtI.gif"));
+            return smiley;
+        }
+        catch (Exception e) {
+        }
+        return smiley;
     }
 
 }
