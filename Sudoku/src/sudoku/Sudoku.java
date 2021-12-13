@@ -25,7 +25,7 @@ public class Sudoku implements SudokuSolver {
      * @param col The column that is being evaluated
      * @return true/false if sudoku was solvable
      */
-    private boolean solve(int row, int col) {
+    private boolean solve(int row, int col) { //better algo by Knuth described here https://arxiv.org/pdf/cs/0011047.pdf
         attempts++;
         if (col == 9) {
             row++;
