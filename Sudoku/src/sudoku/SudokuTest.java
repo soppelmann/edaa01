@@ -106,4 +106,12 @@ public class SudokuTest {
         assertEquals(this.game.get(0,0), 1);
     }
 
+    //Testfall 8: getMatrix
+    @Test
+    void testAddGet() {
+        this.game.setMatrix(Prefilled);
+        assertTrue(this.game.isValid(), "Board is valid");
+        assertTrue(this.game.getMatrix() == Prefilled, "Able to retrieve board");
+    }
+
 }
